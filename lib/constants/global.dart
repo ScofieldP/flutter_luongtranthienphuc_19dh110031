@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-class Global{
-//  color
-  static const backgroundColor = Colors.white;
-
+class GlobalVariables {
+  static const backgroundColor = Colors.green;
 }
