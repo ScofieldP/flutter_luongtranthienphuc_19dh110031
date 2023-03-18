@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/screen.dart';
-import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/screen.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/home_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/login/login_screen.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/product_detail/product_detali_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/register_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/splash/splash_screen.dart';
 
@@ -26,6 +27,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const HomeScreen(),
+      );
+    case ProductDetailScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const ProductDetailScreen(),
       );
     case CartScreen.routeName:
       return MaterialPageRoute(

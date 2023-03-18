@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
-import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/screen.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/home_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/register_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -192,14 +192,15 @@ class _LoginFormState extends State<LoginForm> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account ? ", style: TextStyle(color: Colors.green, fontSize: 14),),
-                        // GestureDetector(
-                        //   onTap: () async {
-                        //     final result = await Navigator.pushNamed(context, RegisterScreen.routeName);
-                        //     User user = result ;
-                        //     _usernameController.text = user.username;
-                        //   }
-                        // )
+                        const Text("Don't have an account ?", style: TextStyle(color: Colors.green, fontSize: 14),),
+                        GestureDetector(
+                          onTap: () async {
+                           Navigator.pushNamed(context, RegisterScreen.routeName) ;
+                            // User user = result;
+                            // _usernameController.text = user.username;
+                          },
+                          child: const Text("Sign Up", style: TextStyle(color: Colors.redAccent, fontSize: 14), ),
+                        )
                       ],
                     )
                   ],

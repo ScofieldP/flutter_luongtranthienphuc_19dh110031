@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/router.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/login/login_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/components/register_form.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/register_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/splash/splash_screen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const RegisterScreen(),
+      home: const LoginScreen(),
     );
   }
 }
