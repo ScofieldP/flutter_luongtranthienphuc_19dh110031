@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-          color: Colors.white,
+          color: Colors.green,
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
@@ -21,7 +21,7 @@ class RegisterScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           "Sign Up",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.green),
         ),
       ),
       // body: const RegisterForm(),
@@ -29,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: const [
                 Text(

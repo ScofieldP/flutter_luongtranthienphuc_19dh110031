@@ -8,6 +8,6 @@ void addProductToCart(Products product) {
   cart.add(product);
 }
 
-List<Products> getCart() {
+static List<Products> getCart() {
   return cart;
 }}

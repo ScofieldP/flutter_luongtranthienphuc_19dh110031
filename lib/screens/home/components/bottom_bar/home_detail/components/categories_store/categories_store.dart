@@ -7,7 +7,7 @@ class CategoriesStore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final categories = Categories.init();
+    final categories = Categories.init();
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
@@ -38,9 +38,9 @@ class CategoriesStore extends StatelessWidget {
               height: 150,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                // itemCount: categories.length,
+                itemCount: categories.length,
                 itemBuilder: (context, index) {
-                  // return CategoriesItem(category: categories[index]);
+                  return CategoriesItem(category: categories[index]);
                 },
               ),
             )

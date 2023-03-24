@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AccountDetail extends StatefulWidget {
   const AccountDetail({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _AccountDetailState extends State<AccountDetail> {
                       color: Color(0xFFF5F6F9),
                       shape: BoxShape.circle,
                     ),
-                    // child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                    child: SvgPicture.asset("assets/icons/facebook-2.svg"),
                   ),
                   Container(
                     height: 40,
@@ -79,7 +80,7 @@ class _AccountDetailState extends State<AccountDetail> {
                     padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
                         color: Color(0xFFF5F6F9), shape: BoxShape.circle),
-                    // child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                    child: SvgPicture.asset("assets/icons/google-icon.svg"),
                   ),
                   Container(
                     height: 40,
@@ -87,7 +88,7 @@ class _AccountDetailState extends State<AccountDetail> {
                     padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
                         color: Color(0xFFF5F6F9), shape: BoxShape.circle),
-                    // child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                    child: SvgPicture.asset("assets/icons/twitter.svg"),
                   ),
                 ],
               ),

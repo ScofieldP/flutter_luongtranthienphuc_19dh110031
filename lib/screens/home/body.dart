@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/bottom_bar/account_detail/account_detail.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/bottom_bar/farvorite_detail/farvorite_detail.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/bottom_bar/home_detail/home_detail.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/bottom_bar/notification_detail/notification_detail.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/header/home_header.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/header/menu_header.dart';
 
@@ -11,12 +15,16 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   var selectIndex = 0;
-
   var flag = true;
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screen = [];
+    List<Widget> screen = [
+      const HomeDetail(),
+      const FavoriteDetail(),
+      const NotificationDetail(),
+      const AccountDetail()
+    ];
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

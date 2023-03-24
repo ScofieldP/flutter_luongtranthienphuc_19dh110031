@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/bottom_bar/home_detail/components/product_popular/components/product_item.dart';
 
 class ProductPopular extends StatelessWidget {
-  // final product = Products.init()
   const ProductPopular({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // var productsAPI = Util().getProducts();
+    final products = Products.init();
+    var productsAPI = Utils().getProducts();
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Column(
@@ -30,7 +31,7 @@ class ProductPopular extends StatelessWidget {
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               primary: false,
-              // itemCount: products.length,
+              itemCount: products.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 10,
@@ -38,9 +39,9 @@ class ProductPopular extends StatelessWidget {
                 childAspectRatio: 0.7
               ),
               itemBuilder: (context, index){
-                // return ProductItem(
-                //   product:product[index],
-                // );
+                return ProductItem(
+                  product:products[index],
+                );
               } ,
             ),
           )

@@ -14,8 +14,9 @@ class ProductItem extends StatelessWidget {
     // }
     return GestureDetector(
       onTap: () {
-        // Utils.data.add(product)
-        // Navigator.pushNamed(context, ProductDetailScreen.routeName, arguments: ProductDetailArguments(product:product));
+        // Utils.data.add(product);
+        Navigator.pushNamed(context, ProductDetailScreen.routeName,
+            arguments: ProductDetailArguments(products: product));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

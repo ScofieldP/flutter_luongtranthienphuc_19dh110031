@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 30,
             ),
             emailTextFormField(),
-              const SizedBox(
+            const SizedBox(
               height: 30,
             ),
             passwordTextFormField(),
@@ -35,7 +37,6 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 30,
             ),
             confirmTextFormField(),
-
             const SizedBox(
               height: 30,
             ),
@@ -46,10 +47,11 @@ class _RegisterFormState extends State<RegisterForm> {
                 onPressed: () {
                   if (_registerFormKey.currentState!.validate()) {
                     Navigator.pop(
-                        context,
-                        User(
-                            username: _emailController.text,
-                            password: _confirmController.text));
+                      context,
+                      User(
+                          username: _emailController.text,
+                          password: _confirmController.text),
+                    );
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -71,30 +73,40 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 30,
             ),
             Container(
-              height: 40,
-              width: 40,
-              padding: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
-                  color: Color(0xFFF5F6F9), shape: BoxShape.circle),
-              // child: SvgPicture.asset("assets/icons/facebook-2.svg"),
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              margin: const EdgeInsets.only(left: 10, right: 10),
-              padding: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
-                  color: Color(0xFFF5F6F9), shape: BoxShape.circle),
-              // child: SvgPicture.asset("assets/icons/facebook-2.svg"),
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              padding: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
-                  color: Color(0xFFF5F6F9), shape: BoxShape.circle),
-              // child: SvgPicture.asset("assets/icons/facebook-2.svg"),
-            ),
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFF5F6F9),
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    margin: const EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                        color: Color(0xFFF5F6F9), shape: BoxShape.circle),
+                    child: SvgPicture.asset("assets/icons/google-icon.svg"),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                        color: Color(0xFFF5F6F9), shape: BoxShape.circle),
+                    child: SvgPicture.asset("assets/icons/twitter.svg"),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -111,7 +123,7 @@ class _RegisterFormState extends State<RegisterForm> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.email_outlined),
       ),
-      // validator: Utils.validateEmail,
+      validator: Utils.validateEmail,
       onSaved: (value) {
         setState(() {
           _emailController.text = value!;
@@ -131,9 +143,9 @@ class _RegisterFormState extends State<RegisterForm> {
           hintText: "Enter your password",
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: Icon(Icons.lock_outline)),
-      // validator: (passwordKey){
-      //   return Utils.validatePassword(passwordKey);
-      // },
+      validator: (passwordKey) {
+        return Utils.validatePassword(passwordKey!);
+      },
     );
   }
 
@@ -149,7 +161,7 @@ class _RegisterFormState extends State<RegisterForm> {
           suffixIcon: Icon(Icons.lock_outline)),
       validator: (confirmPassword) {
         var pass = _passKey.currentState!.value;
-        // return Utils.conformPassword(confirmPassword, pass);
+        return Utils.confirmPassword(confirmPassword!, pass);
       },
       onSaved: (value) {
         setState(() {
