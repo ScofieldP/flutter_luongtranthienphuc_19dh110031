@@ -11,7 +11,9 @@ class HomeHeader extends StatelessWidget {
         const Expanded(
           child: TextField(
             decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(vertical: 10),
                 filled: true,
+                border: OutlineInputBorder(),
                 fillColor: Colors.white,
                 hintText: "Search product",
                 prefixIcon: Icon(Icons.search)),
@@ -25,7 +27,11 @@ class HomeHeader extends StatelessWidget {
             height: 40,
             width: 40,
             padding: const EdgeInsets.all(10),
-            child: const Icon(Icons.shopping_cart_outlined),
+            child: const Icon(
+              Icons.shopping_cart_outlined,
+              color: Colors.black,
+
+            ),
           ),
         ),
       ],

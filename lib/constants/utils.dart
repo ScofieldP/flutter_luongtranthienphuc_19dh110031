@@ -1,30 +1,33 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:convert/convert.dart';
 
 class Utils {
-  String url = "http://192.168.0.100:3000/api/food";
-  static List<Products> data = [];
+   static String url = 'http://localhost:8800';
 
-  Future<List<Products>> getProducts() async {
-    var res = await http.get(Uri.parse(url));
-    if (res.statusCode == 200) {
-      var content = res.body;
-      var arr = jsonDecode(content)['food'] as List;
-      return arr.map((e) => _fromJson(e)).toList();
-    }
-    return <Products>[];
-  }
-
-  Products _fromJson(Map<String, dynamic> item) {
-    return Products(
-        title: item['title'],
-        description: item['description'],
-        image: item['image'],
-        price: double.parse(item['price']),
-        id: item['id']);
-  }
+  // String url = "http://192.168.0.100:3000/api/food";
+  // static List<Products> data = [];
+  //
+  // Future<List<Products>> getProducts() async {
+  //   var res = await http.get(Uri.parse(url));
+  //   if (res.statusCode == 200) {
+  //     var content = res.body;
+  //     var arr = jsonDecode(content)['food'] as List;
+  //     return arr.map((e) => _fromJson(e)).toList();
+  //   }
+  //   return <Products>[];
+  // }
+  //
+  // Products _fromJson(Map<String, dynamic> item) {
+  //   return Products(
+  //       title: item['title'],
+  //       description: item['description'],
+  //       image: item['image'],
+  //       price: double.parse(item['price']),
+  //       id: item['id']);
+  // }
 
   static String? validateEmail(String? value) {
     if (value!.isEmpty) {
@@ -62,4 +65,12 @@ class Utils {
     }
     return null;
   }
+
+   static void showSnackBar(BuildContext context, String text) {
+     ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(
+         content: Text(text),
+       ),
+     );
+   }
 }

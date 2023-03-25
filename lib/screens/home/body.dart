@@ -26,7 +26,10 @@ class _BodyState extends State<Body> {
       const AccountDetail()
     ];
     return Scaffold(
+      resizeToAvoidBottomInset:false,
       appBar: AppBar(
+        centerTitle: true,
+        titleSpacing: 0,
         automaticallyImplyLeading: false,
         title: flag ? const HomeHeader() : const MenuHeader(),
       ),

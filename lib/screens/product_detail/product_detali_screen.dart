@@ -12,6 +12,7 @@ class ProductDetailScreen extends StatelessWidget {
     final ProductDetailArguments arguments = ModalRoute.of(context)!.settings.arguments as ProductDetailArguments ;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         leading: GestureDetector(
           onTap: (){
             Navigator.pop(context);

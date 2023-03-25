@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 200,
-          child: Image.asset(products.image),
+          child: Image.network(products.image),
         ),
         const SizedBox(height: 20,),
         Expanded(flex: 1,child: Text("Description: ${products.description}"),),

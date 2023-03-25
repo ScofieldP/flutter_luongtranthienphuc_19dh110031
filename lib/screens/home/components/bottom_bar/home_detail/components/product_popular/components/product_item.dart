@@ -21,9 +21,9 @@ class ProductItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
+          Image.network(
             product.image,
-            fit: BoxFit.fill,
+            fit: BoxFit.fitWidth,
           ),
           Row(
             children: [

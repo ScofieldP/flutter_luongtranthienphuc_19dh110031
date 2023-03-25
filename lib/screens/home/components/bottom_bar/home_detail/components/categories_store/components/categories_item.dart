@@ -12,7 +12,8 @@ class CategoriesItem extends StatelessWidget {
       width: 150,
       height: 150,
       padding: const EdgeInsets.all(5),
-      child: Image.asset(category.image),
+      child: Image.network(category.image),
     );
   }
+
 }

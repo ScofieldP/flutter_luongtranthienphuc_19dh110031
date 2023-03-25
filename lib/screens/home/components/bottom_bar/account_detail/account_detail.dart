@@ -18,7 +18,7 @@ class _AccountDetailState extends State<AccountDetail> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-           const  SizedBox(
+            const SizedBox(
               height: 30,
             ),
             emailTextFormField(),

@@ -16,7 +16,7 @@ class CartItem extends StatelessWidget {
           SizedBox(
             width: 100,
             height: 100,
-            child: Image.asset(products.image),
+            child: Image.network(products.image),
           ),
           Expanded(child: Text(products.title)),
           Expanded(child: Text(products.price.toString())),

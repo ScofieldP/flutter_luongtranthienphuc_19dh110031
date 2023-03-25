@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/home_screen.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/login/services/login_service.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/register_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -18,8 +19,8 @@ class _LoginFormState extends State<LoginForm> {
   final _loginFormKey = GlobalKey<FormState>();
   bool _value = false;
   late SharedPreferences prefs;
-
-  final TextEditingController _usernameController = TextEditingController();
+  final LoginService loginService = LoginService();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   FToast? fToast;
 
@@ -31,11 +32,26 @@ class _LoginFormState extends State<LoginForm> {
     _getData();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  void signInUser() {
+    loginService.loginUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+  }
+
   void _getData() async {
     prefs = await SharedPreferences.getInstance();
     String? username = prefs.getString("username");
     if (username != null && username.isNotEmpty) {
-      _usernameController.text = username;
+      _emailController.text = username;
       _passwordController.text = prefs.getString("password")!;
       _value = prefs.getBool('check') ?? false;
       print(_value.toString());
@@ -43,7 +59,9 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void navigateToHomeScreen() {
-    Navigator.pushNamed(context, HomeScreen.routeName);
+    if (_loginFormKey.currentState!.validate()) {
+      signInUser();
+    }
   }
 
   @override
@@ -88,10 +106,10 @@ class _LoginFormState extends State<LoginForm> {
                       },
                       onSaved: (_value) {
                         setState(() {
-                          _usernameController.text = _value!;
+                          _emailController.text = _value!;
                         });
                       },
-                      controller: _usernameController,
+                      controller: _emailController,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: "Username",
@@ -136,8 +154,7 @@ class _LoginFormState extends State<LoginForm> {
                         onPressed: () async {
                           if (_value) {
                             prefs = await SharedPreferences.getInstance();
-                            prefs.setString(
-                                'username', _usernameController.text);
+                            prefs.setString('username', _emailController.text);
                             prefs.setString(
                                 "password", _passwordController.text);
                             prefs.setBool('check', _value);
@@ -176,7 +193,8 @@ class _LoginFormState extends State<LoginForm> {
                             decoration: const BoxDecoration(
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle),
-                            child: SvgPicture.asset("assets/icons/facebook-2.svg"),
+                            child:
+                                SvgPicture.asset("assets/icons/facebook-2.svg"),
                           ),
                           Container(
                             height: 40,
@@ -186,7 +204,8 @@ class _LoginFormState extends State<LoginForm> {
                             decoration: const BoxDecoration(
                                 color: Color(0xFFF5F6F9),
                                 shape: BoxShape.circle),
-                            child: SvgPicture.asset("assets/icons/google-icon.svg"),
+                            child: SvgPicture.asset(
+                                "assets/icons/google-icon.svg"),
                           ),
                           Container(
                             height: 40,
@@ -206,15 +225,23 @@ class _LoginFormState extends State<LoginForm> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?", style: TextStyle(color: Colors.green, fontSize: 14),),
+                        const Text(
+                          "Don't have an account?",
+                          style: TextStyle(color: Colors.green, fontSize: 14),
+                        ),
                         GestureDetector(
                           onTap: () async {
-                            final result = await Navigator.pushNamed(context, RegisterScreen.routeName);
+                            final result = await Navigator.pushNamed(
+                                context, RegisterScreen.routeName);
                             User? user = result as User?;
-                            _usernameController.text = user!.username;
+                            _emailController.text = user!.email;
                             _passwordController.text = user.password;
                           },
-                          child: const Text("Sign Up", style: TextStyle(color: Colors.redAccent, fontSize: 14), ),
+                          child: const Text(
+                            "Sign Up",
+                            style: TextStyle(
+                                color: Colors.redAccent, fontSize: 14),
+                          ),
                         )
                       ],
                     )

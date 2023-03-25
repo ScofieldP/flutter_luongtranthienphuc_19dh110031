@@ -7,7 +7,7 @@ class MenuHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 50,
+      height:60,
       alignment: Alignment.centerLeft,
       decoration: const BoxDecoration(color: Colors.green),
       child: Padding(

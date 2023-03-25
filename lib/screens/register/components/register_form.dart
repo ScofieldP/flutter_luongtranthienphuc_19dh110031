@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/services/register_service.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -13,10 +14,26 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   final _registerFormKey = GlobalKey<FormState>();
   final _passKey = GlobalKey<FormFieldState>();
+  final RegisterService registerService = RegisterService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmController = TextEditingController();
 
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmController.dispose();
+  }
+
+  void signUpUser() {
+    registerService.registerUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -46,12 +63,13 @@ class _RegisterFormState extends State<RegisterForm> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_registerFormKey.currentState!.validate()) {
-                    Navigator.pop(
-                      context,
-                      User(
-                          username: _emailController.text,
-                          password: _confirmController.text),
-                    );
+                    // Navigator.pop(
+                    //   context,
+                    //   User(
+                    //       username: _emailController.text,
+                    //       password: _confirmController.text, id: '', token: ''),
+                    // );
+                    signUpUser();
                   }
                 },
                 style: ElevatedButton.styleFrom(
