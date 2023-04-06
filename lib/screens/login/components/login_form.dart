@@ -102,7 +102,7 @@ class _LoginFormState extends State<LoginForm> {
                   children: [
                     TextFormField(
                       validator: (value) {
-                        return Utils.validatePassword(value!);
+                        return Utils.validateEmail(value!);
                       },
                       onSaved: (_value) {
                         setState(() {
@@ -229,18 +229,22 @@ class _LoginFormState extends State<LoginForm> {
                           "Don't have an account?",
                           style: TextStyle(color: Colors.green, fontSize: 14),
                         ),
-                        GestureDetector(
-                          onTap: () async {
-                            final result = await Navigator.pushNamed(
-                                context, RegisterScreen.routeName);
-                            User? user = result as User?;
-                            _emailController.text = user!.email;
-                            _passwordController.text = user.password;
-                          },
-                          child: const Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                color: Colors.redAccent, fontSize: 14),
+                        Padding(
+                          padding: const EdgeInsets.only(left:4.0),
+                          child: GestureDetector(
+                            onTap: () async {
+                              final result = await Navigator.pushNamed(
+                                  context, RegisterScreen.routeName);
+                              User? user = result as User?;
+                              _emailController.text = user!.email;
+                              _passwordController.text = user.password;
+                            },
+
+                            child: const Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                  color: Colors.redAccent, fontSize: 14),
+                            ),
                           ),
                         )
                       ],

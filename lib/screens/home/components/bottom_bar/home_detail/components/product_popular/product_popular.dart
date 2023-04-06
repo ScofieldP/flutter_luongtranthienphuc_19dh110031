@@ -12,7 +12,7 @@ class ProductPopular extends StatefulWidget {
 }
 
 class _ProductPopularState extends State<ProductPopular> {
-  List<Products>? products;
+  List<Products> products =[];
   final ProductService productService = ProductService();
 
   @override

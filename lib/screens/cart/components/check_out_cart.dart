@@ -11,38 +11,47 @@ class CheckOutCart extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Expanded(
-          child: TextButton(
-            style: TextButton.styleFrom(
-              shape: RoundedRectangleBorder(
+          child: SizedBox(
+            height: 50, // set the height here
+            child: TextButton(
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0.0),
-                  side: const BorderSide(color: Colors.green)),
-              backgroundColor: Colors.white,
-              textStyle: const TextStyle(color: Colors.white),
-            ),
-            onPressed: () {},
-            child: Text(
-              "Sum: $sum",
-              style: const TextStyle(fontSize: 14.0),
+                  side: const BorderSide(color: Colors.green),
+                ),
+                backgroundColor: Colors.white,
+                textStyle: const TextStyle(color: Colors.white),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Sum: $sum",
+                style: const TextStyle(fontSize: 14.0),
+              ),
             ),
           ),
         ),
         Expanded(
-          child: TextButton(
-            style: TextButton.styleFrom(
-              shape: RoundedRectangleBorder(
+          child: SizedBox(
+            height: 50, // set the height here
+            child: TextButton(
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0.0),
-                  side: const BorderSide(color: Colors.green)),
-              backgroundColor: Colors.green,
-              textStyle: const TextStyle(color: Colors.white),
-            ),
-            onPressed: () {},
-            child: Text(
-              "Check out".toUpperCase(),
-              style: const TextStyle(fontSize: 14, color: Colors.white),
+                  side: const BorderSide(color: Colors.green),
+                ),
+                backgroundColor: Colors.green,
+                textStyle: const TextStyle(color: Colors.white),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Check out".toUpperCase(),
+                style: const TextStyle(fontSize: 14, color: Colors.white),
+              ),
             ),
           ),
         ),
       ],
     );
   }
+
 }

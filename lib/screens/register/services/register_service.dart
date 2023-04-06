@@ -31,12 +31,13 @@ class RegisterService {
         onSuccess: () {
           Utils.showSnackBar(
             context,
-            'Account created! Login with the same credentials!',
+            'Đăng kí thành công',
           );
         },
       );
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
+      print(e);
     }
   }
 }

@@ -16,14 +16,18 @@ class ProductItem extends StatelessWidget {
       onTap: () {
         // Utils.data.add(product);
         Navigator.pushNamed(context, ProductDetailScreen.routeName,
-            arguments: ProductDetailArguments(products: product));
+            arguments: ProductDetailsArguments(product: product));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            product.image,
-            fit: BoxFit.fitWidth,
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: Image.network(
+              product.image,
+              fit: BoxFit.contain,
+            ),
           ),
           Row(
             children: [

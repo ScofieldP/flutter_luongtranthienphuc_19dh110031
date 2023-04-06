@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/constants/error_handling.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../../../../../constants/error_handling.dart';
 
 class ProductService {
   String uri = Utils.url;
@@ -42,6 +42,7 @@ class ProductService {
       );
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
+      print(e);
     }
     return productList;
   }

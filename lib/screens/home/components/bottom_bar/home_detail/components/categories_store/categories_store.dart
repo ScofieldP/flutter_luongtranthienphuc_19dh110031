@@ -12,7 +12,7 @@ class CategoriesStore extends StatefulWidget {
 }
 
 class _CategoriesStoreState extends State<CategoriesStore> {
-  List<Categories>? categories;
+  List<Categories> categories = []; // initialize to an empty list
   final CategoriesService categoriesService = CategoriesService();
 
   @override
@@ -58,7 +58,7 @@ class _CategoriesStoreState extends State<CategoriesStore> {
               height: 150,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: categories!.length,
+                itemCount: categories?.length,
                 itemBuilder: (context, index) {
                   return CategoriesItem(category: categories![index]);
                 },
