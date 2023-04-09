@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/providers/user_provider.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/home_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/login/services/login_service.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/register_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -66,6 +68,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user.email;
+    print(user);
     return Form(
       key: _loginFormKey,
       child: Container(

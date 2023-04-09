@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:convert/convert.dart';
 
 class Utils {
-   static String url = 'http://localhost:8800';
+  static String url = 'http://192.168.1.12:5000';
 
   // String url = "http://192.168.0.100:3000/api/food";
   // static List<Products> data = [];
@@ -28,6 +24,8 @@ class Utils {
   //       price: double.parse(item['price']),
   //       id: item['id']);
   // }
+
+
 
   static String? validateEmail(String? value) {
     if (value!.isEmpty) {
@@ -66,11 +64,11 @@ class Utils {
     return null;
   }
 
-   static void showSnackBar(BuildContext context, String text) {
-     ScaffoldMessenger.of(context).showSnackBar(
-       SnackBar(
-         content: Text(text),
-       ),
-     );
-   }
+  static void showSnackBar(BuildContext context, String text) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(text),
+      ),
+    );
+  }
 }

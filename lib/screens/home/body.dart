@@ -26,7 +26,7 @@ class _BodyState extends State<Body> {
       const AccountDetail()
     ];
     return Scaffold(
-      resizeToAvoidBottomInset:false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         titleSpacing: 0,
@@ -63,12 +63,7 @@ class _BodyState extends State<Body> {
       ),
       body: SafeArea(
         child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            screen[selectIndex]
-          ],
+          children: [screen[selectIndex]],
         ),
       ),
     );

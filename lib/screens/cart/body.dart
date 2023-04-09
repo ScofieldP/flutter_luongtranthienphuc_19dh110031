@@ -19,11 +19,16 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    for (var element in cartDetail) {
-      sum = sum + element.price;
-    }
+    Cart.loadCart().then((_) {
+      setState(() {
+        cartDetail = Cart.getCart();
+        for (var element in cartDetail) {
+          sum = sum + element.price;
+        }
+        // print(Cart.getCart());
+      });
+    });
   }
-
   @override
   Widget build(BuildContext context) {
     return Container(

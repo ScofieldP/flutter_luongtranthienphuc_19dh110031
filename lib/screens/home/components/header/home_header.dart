@@ -11,7 +11,7 @@ class HomeHeader extends StatelessWidget {
         const Expanded(
           child: TextField(
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 10),
+                // contentPadding: EdgeInsets.only(left:10, right: 10),
                 filled: true,
                 border: OutlineInputBorder(),
                 fillColor: Colors.white,
