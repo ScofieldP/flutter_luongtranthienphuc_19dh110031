@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/product_detail/components/add_product_to_cart.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/product_detail/components/add_product_to_favorite.dart';
 
 class Body extends StatelessWidget {
   final Products products;
@@ -20,7 +21,10 @@ class Body extends StatelessWidget {
         ),
         const SizedBox(height: 20,),
         Expanded(flex: 1,child: Text("Description: ${products.description}"),),
-        AddProductToCart(products: products)
+        AddProductToCart(products: products),
+        const SizedBox(height: 20,),
+        AddProductToFavorite(products: products),
+
       ],
     ),);
   }

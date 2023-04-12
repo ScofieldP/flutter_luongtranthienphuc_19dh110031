@@ -4,14 +4,14 @@ class User {
   final String id;
   final String email;
   final String password;
-  final String token;
+  // final String token;
   bool isAdmin = false;
 
   User(
       {required this.id,
       required this.email,
       required this.password,
-      required this.token,
+      // required this.token,
       required this.isAdmin});
 
   Map<String, dynamic> toMap() {
@@ -19,7 +19,7 @@ class User {
       'id': id,
       'email': email,
       'password': password,
-      'token': token,
+      // 'token': token,
       'isAdmin': isAdmin
     };
   }
@@ -29,7 +29,7 @@ class User {
       id: map['_id'] ?? '',
       email: map['email'] ?? '',
       password: map['password'] ?? '',
-      token: map['token'] ?? '',
+      // token: map['token'] ?? '',
       isAdmin: map['isAdmin'] ?? '',
     );
   }
@@ -42,14 +42,14 @@ class User {
     String? id,
     String? email,
     String? password,
-    String? token,
+    // String? token,
     bool? isAdmin,
   }) {
     return User(
         id: id ?? this.id,
         email: email ?? this.email,
         password: password ?? this.password,
-        token: token ?? this.token,
+        // token: token ?? this.token,
         isAdmin: isAdmin ?? this.isAdmin);
   }
 }

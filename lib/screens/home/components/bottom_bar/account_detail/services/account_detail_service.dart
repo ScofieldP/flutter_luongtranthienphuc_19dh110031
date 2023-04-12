@@ -1,30 +1,33 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/error_handling.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:flutter_bcrypt/flutter_bcrypt.dart';
 
-class RegisterService {
+class AccountDetailService {
   String uri = Utils.url;
 
-  void registerUser({
+  void updateInfo({
     required BuildContext context,
     required String email,
     required String password,
   }) async {
-    try {
-      final salt = await FlutterBcrypt.salt();
-      final hashedPassword = await FlutterBcrypt.hashPw(password:password, salt:salt);
+    final userId = Provider.of<UserProvider>(context, listen: false).user.id;
+    // final salt = await FlutterBcrypt.salt();
+    // final hashedPassword = await FlutterBcrypt.hashPw(password:password, salt:salt);
 
+    try {
       User user = User(
-          id: '',
+          id: userId,
           email: email,
-          password: hashedPassword, // Use hashed password
-          // token: ''
+          password: password  ,
+          // token: '',
           isAdmin: false);
-      http.Response res = await http.post(
-        Uri.parse('$uri/api/auth/register'),
+      http.Response res = await http.put(
+        Uri.parse('$uri/api/user/$userId'),
         body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -33,13 +36,14 @@ class RegisterService {
           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
         },
       );
+      print(res.body);
       httpErrorHandle(
         response: res,
         context: context,
         onSuccess: () {
           Utils.showSnackBar(
             context,
-            'Đăng kí thành công',
+            'Thay đổi thông tin thành công',
           );
         },
       );

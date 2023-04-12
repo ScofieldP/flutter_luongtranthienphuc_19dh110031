@@ -6,7 +6,7 @@ class UserProvider extends ChangeNotifier {
   User(id: '',
       email: '',
       password: '',
-      token: '',
+      // token: '',
       isAdmin: false);
 
   User get user => _user;

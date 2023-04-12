@@ -3,7 +3,6 @@ import 'package:flutter_luongtranthienphuc_19dh110031/models/carts.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/components/custom_bottom_modal.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/components/custom_text_field.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/services/fill_form_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckOutCart extends StatefulWidget {
   final double sum;
@@ -30,8 +29,7 @@ class _CheckOutCartState extends State<CheckOutCart> {
   }
 
   void fillFormUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<Map<String, dynamic>> cart = await Cart.loadCart();
+    List<Map<String, dynamic>> cart = await Cart.loadCart(); // use await to wait for the result of the future
     List<Map<String, dynamic>> updatedCart = cart.map((product) {
       return {
         'productId': product["id"],

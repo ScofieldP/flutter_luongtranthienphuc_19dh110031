@@ -59,6 +59,7 @@ class _ProductPopularState extends State<ProductPopular> {
               itemBuilder: (context, index){
                 return ProductItem(
                   product:products[index],
+
                 );
               } ,
             ),

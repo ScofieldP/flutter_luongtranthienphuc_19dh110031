@@ -50,14 +50,14 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _getData() async {
-    prefs = await SharedPreferences.getInstance();
-    String? username = prefs.getString("username");
-    if (username != null && username.isNotEmpty) {
-      _emailController.text = username;
-      _passwordController.text = prefs.getString("password")!;
-      _value = prefs.getBool('check') ?? false;
-      print(_value.toString());
-    }
+    // prefs = await SharedPreferences.getInstance();
+    // String? username = prefs.getString("username");
+    // if (username != null && username.isNotEmpty) {
+    //   _emailController.text = username;
+    //   _passwordController.text = prefs.getString("password")!;
+    //   _value = prefs.getBool('check') ?? false;
+    //   print(_value.toString());
+    // }
   }
 
   void navigateToHomeScreen() {
@@ -156,15 +156,15 @@ class _LoginFormState extends State<LoginForm> {
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () async {
-                          if (_value) {
-                            prefs = await SharedPreferences.getInstance();
-                            prefs.setString('username', _emailController.text);
-                            prefs.setString(
-                                "password", _passwordController.text);
-                            prefs.setBool('check', _value);
-                          } else {
-                            prefs.remove("check");
-                          }
+                          // if (_value) {
+                          //   prefs = await SharedPreferences.getInstance();
+                          //   prefs.setString('username', _emailController.text);
+                          //   prefs.setString(
+                          //       "password", _passwordController.text);
+                          //   prefs.setBool('check', _value);
+                          // } else {
+                          //   prefs.remove("check");
+                          // }
                           navigateToHomeScreen();
                         },
                         style: ElevatedButton.styleFrom(

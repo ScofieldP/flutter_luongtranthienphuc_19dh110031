@@ -19,13 +19,12 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    Cart.loadCart().then((_) {
+    Cart.loadCart().then((cartJson) {
       setState(() {
-        cartDetail = Cart.getCart();
+        cartDetail = cartJson.map((json) => Products.fromMap(json)).toList();
         for (var element in cartDetail) {
           sum = sum + element.price;
         }
-        // print(Cart.getCart());
       });
     });
   }

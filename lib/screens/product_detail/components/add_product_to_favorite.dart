@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_luongtranthienphuc_19dh110031/models/carts.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class AddProductToCart extends StatefulWidget {
+class AddProductToFavorite extends StatefulWidget {
   final Products products;
 
-  const AddProductToCart({super.key, required this.products});
+  const AddProductToFavorite({Key? key, required this.products})
+      : super(key: key);
 
   @override
-  State<AddProductToCart> createState() => _AddProductToCartState();
+  State<AddProductToFavorite> createState() => _AddProductToFavoriteState();
 }
 
-class _AddProductToCartState extends State<AddProductToCart> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class _AddProductToFavoriteState extends State<AddProductToFavorite> {
+  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,31 +22,37 @@ class _AddProductToCartState extends State<AddProductToCart> {
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: () {
-          Cart.addProductToCart(widget.products);
           Fluttertoast.showToast(
-              msg: "Add to cart",
+              msg: isLiked ? "Removed from favorites" : "Added to favorites",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,
-              backgroundColor: Colors.orangeAccent,
+              backgroundColor: Colors.red,
               textColor: Colors.white,
               fontSize: 16.0);
+          setState(() {
+            isLiked = !isLiked;
+          });
         },
         style: ElevatedButton.styleFrom(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           backgroundColor: Colors.green,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
+          alignment: Alignment.centerLeft,
           children: [
-            Icon(Icons.shopping_cart, color: Colors.white),
+            isLiked
+                ? Icon(Icons.favorite, color: Colors.red)
+                : Icon(Icons.favorite_border, color: Colors.white),
             Padding(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: 30),
               child: Text(
-                "Add to cart".toUpperCase(),
+                isLiked ? "Removed from favorites".toUpperCase() : "Add to favorites".toUpperCase(),
                 style: TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
           ],

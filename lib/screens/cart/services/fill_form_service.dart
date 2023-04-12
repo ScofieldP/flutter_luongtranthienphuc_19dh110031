@@ -40,13 +40,12 @@ class FillFormService {
         response: res,
         context: context,
         onSuccess: () async {
-          await Cart.clearCart();
           Navigator.pushNamedAndRemoveUntil(
             context,
             HomeScreen.routeName,
                 (route) => false,
           );
-          Utils.showSnackBar(context, "Login Success");
+          Utils.showSnackBar(context, "Đơn đặt hàng thành công");
         },
       );
     } catch (e) {
