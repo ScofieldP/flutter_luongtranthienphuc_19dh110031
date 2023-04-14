@@ -14,13 +14,11 @@ class RegisterService {
     required String password,
   }) async {
     try {
-      final salt = await FlutterBcrypt.salt();
-      final hashedPassword = await FlutterBcrypt.hashPw(password:password, salt:salt);
 
       User user = User(
           id: '',
           email: email,
-          password: hashedPassword, // Use hashed password
+          password: password, // Use hashed password
           // token: ''
           isAdmin: false);
       http.Response res = await http.post(
