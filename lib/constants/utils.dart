@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Utils {
-  static String url = 'http://192.168.1.12:5000';
+  static String url = 'http://192.168.1.79:5000';
 
   // String url = "http://192.168.0.100:3000/api/food";
   // static List<Products> data = [];

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/components/bottom_bar/home_detail/components/product_popular/components/product_item.dart';
@@ -17,40 +19,44 @@ class _FavoriteDetailState extends State<FavoriteDetail> {
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((prefs) {
-      setState(() {
-        _prefs = prefs;
-        _favoriteProducts = _loadFavoriteProducts();
-      });
-    });
+    loadFavorites();
   }
 
-  List<Products> _loadFavoriteProducts() {
-    return _prefs.getKeys().where((key) => _prefs.getBool(key) ?? false).map((key) {
-      final productId = int.parse(key);
-      return Products(
-        id: productId.toString(),
-        title: _prefs.getString('$productId.title') ?? '',
-        description: _prefs.getString('$productId.description') ?? '',
-        price: _prefs.getDouble('$productId.price') ?? 0.0,
-        image: _prefs.getString('$productId.image') ?? '',
-      );
-    }).toList();
+  Future<void> loadFavorites() async {
+    _prefs = await SharedPreferences.getInstance();
+    List<String>? favoriteJsonList = _prefs.getStringList('favorite');
+    if (favoriteJsonList != null) {
+      _favoriteProducts = favoriteJsonList
+          .map((json) => Products.fromMap(jsonDecode(json)))
+          .toList();
+    }
+
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Favorites')),
-      body: _favoriteProducts.isEmpty
+    return Expanded(
+      child: _favoriteProducts.isEmpty
           ? Center(child: Text('No favorites yet'))
-          : GridView.count(
-        crossAxisCount: 2,
-        children: _favoriteProducts.map((product) {
-          return ProductItem(product: product);
-        }).toList(),
+          : Container(
+        child: GridView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          primary: false,
+          itemCount: _favoriteProducts.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.7),
+          itemBuilder: (context, index) {
+            return ProductItem(
+              product: _favoriteProducts[index],
+            );
+          },
+        ),
       ),
     );
   }
 }
-

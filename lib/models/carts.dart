@@ -17,6 +17,7 @@ class Cart {
 
     // await saveCart();
   }
+
   // static Future<void> saveCart() async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   //   List<String> cartJsonList =
@@ -41,6 +42,4 @@ class Cart {
       return []; // Return a default value for cart
     }
   }
-
-
 }

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProductToFavorite extends StatefulWidget {
   final Products products;
@@ -13,7 +16,46 @@ class AddProductToFavorite extends StatefulWidget {
 }
 
 class _AddProductToFavoriteState extends State<AddProductToFavorite> {
-  bool isLiked = false;
+  late SharedPreferences _prefs;
+  bool _isLiked = false;
+  List<Products> _favoriteProducts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initIsLiked();
+  }
+
+  Future<void> _initIsLiked() async {
+    _prefs = await SharedPreferences.getInstance();
+    List<String>? favoriteJsonList = _prefs.getStringList('favorite');
+    if (favoriteJsonList != null) {
+      List<Products> favoriteList = favoriteJsonList
+          .map((json) => Products.fromMap(jsonDecode(json)))
+          .toList();
+      _isLiked = favoriteList.any((p) => p.id == widget.products.id);
+    }
+    setState(() {});
+  }
+
+  Future<void> _toggleIsLiked() async {
+    setState(() {
+      _isLiked = !_isLiked;
+    });
+    List<String> favoriteJsonList =
+        _prefs.getStringList('favorite') ?? <String>[];
+    List<Products> favoriteList = favoriteJsonList
+        .map((json) => Products.fromMap(jsonDecode(json)))
+        .toList();
+    if (_isLiked) {
+      favoriteList.add(widget.products);
+    } else {
+      favoriteList.removeWhere((p) => p.id == widget.products.id);
+    }
+    favoriteJsonList = favoriteList.map((p) => json.encode(p.toMap())).toList();
+    await _prefs.setStringList('favorite', favoriteJsonList);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +63,15 @@ class _AddProductToFavoriteState extends State<AddProductToFavorite> {
       height: 50,
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
+          await _toggleIsLiked();
           Fluttertoast.showToast(
-              msg: isLiked ? "Removed from favorites" : "Added to favorites",
+              msg: _isLiked ? "Added to favorites" : "Removed from favorites",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 1,
               backgroundColor: Colors.red,
               textColor: Colors.white,
               fontSize: 16.0);
-          setState(() {
-            isLiked = !isLiked;
-          });
         },
         style: ElevatedButton.styleFrom(
           shape:
@@ -42,13 +81,15 @@ class _AddProductToFavoriteState extends State<AddProductToFavorite> {
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
-            isLiked
+            _isLiked
                 ? Icon(Icons.favorite, color: Colors.red)
                 : Icon(Icons.favorite_border, color: Colors.white),
             Padding(
               padding: EdgeInsets.only(left: 30),
               child: Text(
-                isLiked ? "Removed from favorites".toUpperCase() : "Add to favorites".toUpperCase(),
+                _isLiked
+                    ? "Remove from favorites".toUpperCase()
+                    : "Add to favorites".toUpperCase(),
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

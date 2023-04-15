@@ -18,10 +18,10 @@ class Products {
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'description': description,
-      'image': image,
+      'desc': description,
+      'img': image,
       'price': price,
-      'id': id,
+      '_id': id,
     };
   }
 

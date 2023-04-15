@@ -5,9 +5,8 @@ import 'package:flutter_luongtranthienphuc_19dh110031/screens/product_detail/pro
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = '/search';
-  final Products product;  // make sure this parameter is defined in the constructor
 
-  const SearchScreen({Key? key, required this.product}) : super(key: key);
+  const SearchScreen({Key? key}) : super(key: key);
 
 
   @override

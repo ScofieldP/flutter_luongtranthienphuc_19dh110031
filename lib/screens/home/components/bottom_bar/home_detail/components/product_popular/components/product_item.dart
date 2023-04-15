@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/products.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/product_detail/product_detali_screen.dart';
@@ -26,17 +27,24 @@ class _ProductItemState extends State<ProductItem> {
               child: GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, ProductDetailScreen.routeName,
-                      arguments: ProductDetailsArguments(product: widget.product));
+                      arguments:
+                          ProductDetailsArguments(product: widget.product));
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: Image.network(
-                        widget.product.image,
+                      child: CachedNetworkImage(
+                        width: 150,
+                        height: 150,
+                        imageUrl: widget.product.image,
                         fit: BoxFit.contain,
+                        progressIndicatorBuilder: (context,url, progress){
+                          return const CircularProgressIndicator();
+                        },
+                        errorWidget: (context, videoUrl, error){
+                          return const Icon(Icons.error);
+                        },
                       ),
                     ),
                     Row(
@@ -51,7 +59,8 @@ class _ProductItemState extends State<ProductItem> {
                           child: Text(
                             widget.product.price.toDouble().toString(),
                             style: const TextStyle(
-                                color: Colors.white, fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                         )
                       ],
