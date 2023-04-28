@@ -7,23 +7,36 @@ import 'products.dart';
 class Cart {
   static List<Products> cart = [];
 
-  static Future<void> addProductToCart(Products product) async {
+  static Future<void> updateCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    cart.add(product);
     List<String> cartJsonList =
         cart.map((p) => json.encode(p.toMap())).toList();
     await prefs.setStringList('cart', cartJsonList);
     print(cartJsonList);
-
-    // await saveCart();
   }
 
-  // static Future<void> saveCart() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   List<String> cartJsonList =
-  //   cart.map((p) => json.encode(p.toMap())).toList();
-  //   await prefs.setStringList('cart', cartJsonList);
-  // }
+  static Future<void> addProductToCart(Products product) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Check if the product already exists in the cart
+    int index = cart.indexWhere((p) => p.id == product.id);
+    if (index >= 0) {
+      // If it does, update the quantity and total amount
+      cart[index].quantity += product.quantity;
+      cart[index].totalPrice = cart[index].quantity * cart[index].price;
+    } else {
+      // calculate the price and total price for the first time
+      product.totalPrice = product.quantity * product.price;
+      cart.add(product);
+    }
+
+    List<String> cartJsonList =
+    cart.map((p) => json.encode(p.toMap())).toList();
+    await prefs.setStringList('cart', cartJsonList);
+    print(cartJsonList);
+
+    await updateCart();
+  }
+
   static List<Products> getCart() {
     return cart;
   }

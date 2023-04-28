@@ -5,14 +5,14 @@ class Order {
   List<Map<String, dynamic>> products;
 
   // final num subtotal; //phí ship
-  // final num total;
+  final num total;
   Map<String, dynamic> shipping;
 
   Order({
     required this.userId,
     required this.products,
     // required this.subtotal,
-    // required this.total,
+    required this.total,
     required this.shipping,
   });
 
@@ -26,7 +26,7 @@ class Order {
                 })
             .toList(),
         // 'subtotal': subtotal,
-        // 'total': total,
+        'total': total,
         'shipping': shipping.isNotEmpty
             ? {
                 'name': shipping['name'],
@@ -45,7 +45,7 @@ class Order {
             'price': x['price'],
           })),
       // subtotal: json['subtotal'],
-      // total: json['total'],
+      total: json['total'],
       shipping: json['shipping'] != null
           ? {
               'name': json['shipping']['name'],

@@ -63,12 +63,12 @@ class _RegisterFormState extends State<RegisterForm> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_registerFormKey.currentState!.validate()) {
-                    // Navigator.pop(
-                    //   context,
-                    //   User(
-                    //       username: _emailController.text,
-                    //       password: _confirmController.text, id: '', token: ''),
-                    // );
+                    Navigator.pop(
+                      context,
+                      User(
+                          email: _emailController.text,
+                          password: _confirmController.text, id: '' , isAdmin: false),
+                    );
                     signUpUser();
                   }
                 },

@@ -1,31 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Utils {
-  static String url = 'http://192.168.1.79:5000';
-
-  // String url = "http://192.168.0.100:3000/api/food";
-  // static List<Products> data = [];
-  //
-  // Future<List<Products>> getProducts() async {
-  //   var res = await http.get(Uri.parse(url));
-  //   if (res.statusCode == 200) {
-  //     var content = res.body;
-  //     var arr = jsonDecode(content)['food'] as List;
-  //     return arr.map((e) => _fromJson(e)).toList();
-  //   }
-  //   return <Products>[];
-  // }
-  //
-  // Products _fromJson(Map<String, dynamic> item) {
-  //   return Products(
-  //       title: item['title'],
-  //       description: item['description'],
-  //       image: item['image'],
-  //       price: double.parse(item['price']),
-  //       id: item['id']);
-  // }
-
-
+  static String url = 'http://192.168.89.214:5000';
 
   static String? validateEmail(String? value) {
     if (value!.isEmpty) {

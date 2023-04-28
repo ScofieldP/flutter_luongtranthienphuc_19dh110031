@@ -5,8 +5,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class AddProductToCart extends StatefulWidget {
   final Products products;
+  final int quantity;
 
-  const AddProductToCart({super.key, required this.products});
+  const AddProductToCart({Key? key, required this.products, required this.quantity})
+      : super(key: key);
 
   @override
   State<AddProductToCart> createState() => _AddProductToCartState();
@@ -25,7 +27,8 @@ class _AddProductToCartState extends State<AddProductToCart> {
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: () {
-          Cart.addProductToCart(widget.products);
+          final productWithQuantity = widget.products.copyWith(quantity: widget.quantity);
+          Cart.addProductToCart(productWithQuantity);
           Fluttertoast.showToast(
               msg: "Add to cart",
               toastLength: Toast.LENGTH_SHORT,

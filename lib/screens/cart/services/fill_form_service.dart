@@ -15,7 +15,7 @@ class FillFormService {
     required BuildContext context,
     required List<Map<String, dynamic>> products,
     // required double subtotal,
-    // required double total,
+    required num total,
     required Map<String, dynamic> shipping,
   }) async {
     final userId = Provider.of<UserProvider>(context,listen: false).user.id;
@@ -24,7 +24,7 @@ class FillFormService {
           userId: userId,
           products: products,
           // subtotal: subtotal,
-          // total: total,
+          total: total,
           shipping: shipping);
       http.Response res = await http.post(
         Uri.parse('$uri/api/order'),

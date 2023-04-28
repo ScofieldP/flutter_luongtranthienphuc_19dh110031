@@ -54,7 +54,6 @@ class _AddProductToFavoriteState extends State<AddProductToFavorite> {
     }
     favoriteJsonList = favoriteList.map((p) => json.encode(p.toMap())).toList();
     await _prefs.setStringList('favorite', favoriteJsonList);
-
   }
 
   @override
@@ -91,9 +90,10 @@ class _AddProductToFavoriteState extends State<AddProductToFavorite> {
                     ? "Remove from favorites".toUpperCase()
                     : "Add to favorites".toUpperCase(),
                 style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],

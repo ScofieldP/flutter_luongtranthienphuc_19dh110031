@@ -38,18 +38,5 @@ class User {
 
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
 
-  User copyWith({
-    String? id,
-    String? email,
-    String? password,
-    // String? token,
-    bool? isAdmin,
-  }) {
-    return User(
-        id: id ?? this.id,
-        email: email ?? this.email,
-        password: password ?? this.password,
-        // token: token ?? this.token,
-        isAdmin: isAdmin ?? this.isAdmin);
-  }
+
 }

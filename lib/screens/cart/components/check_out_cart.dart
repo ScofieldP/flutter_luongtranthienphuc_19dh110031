@@ -3,6 +3,7 @@ import 'package:flutter_luongtranthienphuc_19dh110031/models/carts.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/components/custom_bottom_modal.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/components/custom_text_field.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/cart/services/fill_form_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckOutCart extends StatefulWidget {
   final double sum;
@@ -28,11 +29,17 @@ class _CheckOutCartState extends State<CheckOutCart> {
     _addressController.dispose();
   }
 
+  void deleteCart() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('cart');
+  }
+
   void fillFormUser() async {
-    List<Map<String, dynamic>> cart = await Cart.loadCart(); // use await to wait for the result of the future
+    List<Map<String, dynamic>> cart =
+        await Cart.loadCart(); // use await to wait for the result of the future
     List<Map<String, dynamic>> updatedCart = cart.map((product) {
       return {
-        'productId': product["id"],
+        'productId': product["_id"],
         'title': product['title'],
         'price': product['price'],
       };
@@ -41,12 +48,13 @@ class _CheckOutCartState extends State<CheckOutCart> {
         context: context,
         products: updatedCart,
         // subtotal: widget.sum,
-        // total: widget.sum,
+        total: widget.sum,
         shipping: {
           'name': _usernameController.text,
           'address': _addressController.text,
           'phone': _phoneController.text,
         });
+    deleteCart();
   }
 
   @override
@@ -154,12 +162,6 @@ class _CheckOutCartState extends State<CheckOutCart> {
                                       onPressed: () {
                                         if (_checkOutFormKey.currentState!
                                             .validate()) {
-                                          // Navigator.pop(
-                                          //   context,
-                                          //   User(
-                                          //       username: _emailController.text,
-                                          //       password: _confirmController.text, id: '', token: ''),
-                                          // );
                                           fillFormUser();
                                         }
                                       },
