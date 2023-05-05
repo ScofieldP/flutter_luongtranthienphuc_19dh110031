@@ -34,6 +34,7 @@ class _RegisterFormState extends State<RegisterForm> {
       password: _passwordController.text,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -67,7 +68,9 @@ class _RegisterFormState extends State<RegisterForm> {
                       context,
                       User(
                           email: _emailController.text,
-                          password: _confirmController.text, id: '' , isAdmin: false),
+                          password: _confirmController.text,
+                          id: '',
+                          isAdmin: false),
                     );
                     signUpUser();
                   }

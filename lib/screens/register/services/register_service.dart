@@ -3,7 +3,6 @@ import 'package:flutter_luongtranthienphuc_19dh110031/constants/error_handling.d
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_bcrypt/flutter_bcrypt.dart';
 
 class RegisterService {
   String uri = Utils.url;
@@ -37,7 +36,7 @@ class RegisterService {
         onSuccess: () {
           Utils.showSnackBar(
             context,
-            'Đăng kí thành công',
+            'Registration successful',
           );
         },
       );

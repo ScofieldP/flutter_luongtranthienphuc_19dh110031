@@ -36,7 +36,7 @@ class _CheckOutCartState extends State<CheckOutCart> {
 
   void fillFormUser() async {
     List<Map<String, dynamic>> cart =
-        await Cart.loadCart(); // use await to wait for the result of the future
+        await Cart.loadCart();
     List<Map<String, dynamic>> updatedCart = cart.map((product) {
       return {
         'productId': product["_id"],
@@ -54,6 +54,7 @@ class _CheckOutCartState extends State<CheckOutCart> {
           'address': _addressController.text,
           'phone': _phoneController.text,
         });
+
     deleteCart();
   }
 

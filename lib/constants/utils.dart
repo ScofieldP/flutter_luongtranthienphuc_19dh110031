@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Utils {
-  static String url = 'http://192.168.89.214:5000';
+  static String url = 'https://flutter-node-api-production.up.railway.app';
 
   static String? validateEmail(String? value) {
     if (value!.isEmpty) {

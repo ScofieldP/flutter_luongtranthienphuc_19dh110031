@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/constants/utils.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/models/user.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/providers/user_provider.dart';
-import 'package:flutter_luongtranthienphuc_19dh110031/screens/home/home_screen.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/login/services/login_service.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/register/register_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,7 +17,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _loginFormKey = GlobalKey<FormState>();
+  final   _loginFormKey = GlobalKey<FormState>();
   bool _value = false;
   late SharedPreferences prefs;
   final LoginService loginService = LoginService();

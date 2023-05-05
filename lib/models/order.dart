@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class Order {
+  final String id;
   final String userId;
   List<Map<String, dynamic>> products;
 
@@ -9,6 +10,7 @@ class Order {
   Map<String, dynamic> shipping;
 
   Order({
+    required this.id,
     required this.userId,
     required this.products,
     // required this.subtotal,
@@ -17,6 +19,7 @@ class Order {
   });
 
   Map<String, dynamic> toMap() => {
+        'id': id,
         'userId': userId,
         'products': products
             .map((x) => {
@@ -36,21 +39,22 @@ class Order {
             : null,
       };
 
-  factory Order.fromMap(Map<String, dynamic> json) {
+  factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
-      userId: json['userId'],
-      products: List<Map<String, dynamic>>.from(json['products']?.map((x) => {
+      id: map['_id'] ?? "chưa có id",
+      userId: map['userId'] ?? "",
+      products: List<Map<String, dynamic>>.from(map['products']?.map((x) => {
             'productId': x['id'],
             'title': x['title'],
             'price': x['price'],
           })),
-      // subtotal: json['subtotal'],
-      total: json['total'],
-      shipping: json['shipping'] != null
+      // subtotal: map['subtotal'],
+      total: map['total'],
+      shipping: map['shipping'] != null
           ? {
-              'name': json['shipping']['name'],
-              'address': json['shipping']['address'],
-              'phone': json['shipping']['phone'],
+              'name': map['shipping']['name'],
+              'address': map['shipping']['address'],
+              'phone': map['shipping']['phone'],
             }
           : {},
     );
