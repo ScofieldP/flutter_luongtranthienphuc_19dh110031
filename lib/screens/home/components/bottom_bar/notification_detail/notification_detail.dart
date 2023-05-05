@@ -29,7 +29,7 @@ class _NotificationDetailState extends State<NotificationDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return notifications != null // check if notifications is not null
+    return notifications != null
         ? Expanded(
           child: ListView.builder(
               itemCount: notifications.length, // add itemCount parameter

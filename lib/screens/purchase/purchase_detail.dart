@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_luongtranthienphuc_19dh110031/screens/purchase/components/list_tile_purchase.dart';
 import 'package:flutter_luongtranthienphuc_19dh110031/screens/purchase/services/purchase_services.dart';
 
 import '../../models/order.dart';
@@ -27,6 +28,10 @@ class _PurchaseDetailState extends State<PurchaseDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Expanded(child: ListView.builder(
+        itemCount: orders.length, // add itemCount parameter
+        itemBuilder: (context, index) {
+    return ListTilePurchase(order: orders[index]);
+    }));
   }
 }
